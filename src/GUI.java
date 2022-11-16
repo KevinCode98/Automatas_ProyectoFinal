@@ -92,10 +92,6 @@ public class GUI extends JFrame {
 //        center.add(textArea);
 //        east.setLayout(new SpringLayout());
         add(center, BorderLayout.CENTER);
-
-
     }
-
-
 }
 

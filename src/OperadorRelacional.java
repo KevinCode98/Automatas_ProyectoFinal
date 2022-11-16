@@ -1,8 +1,8 @@
 public final class OperadorRelacional extends Automata {
     public static int cantidadOperadorRelacional = 0;
 
-    public OperadorRelacional(String cadena) {
-        super(cadena);
+    public OperadorRelacional() {
+        super();
         q0();
     }
 
@@ -11,21 +11,22 @@ public final class OperadorRelacional extends Automata {
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
         // Saber si el operador s<olo cuenta con un signo
-        if ((cadena.charAt(position) == '<' || cadena.charAt(position) == '>') && cadena.length() == 1) {
+        if ((Automata.cadena.charAt(Automata.position) == '<' || Automata.cadena.charAt(Automata.position) == '>')
+                && cadena.charAt(Automata.position + 1) == ' ') {
             aceptado = true;
             return;
         }
         // Saber si el operador cuenta con dos signos
-        if (cadena.charAt(position) == '<' || cadena.charAt(position) == '>' ||
-                cadena.charAt(position) == '=' || cadena.charAt(position) == '!') {
-            position++;
+        if (Automata.cadena.charAt(Automata.position) == '<' || Automata.cadena.charAt(Automata.position) == '>' ||
+                Automata.cadena.charAt(Automata.position) == '=' || Automata.cadena.charAt(Automata.position) == '!') {
+            Automata.position++;
             q1();
         }
     }
 
     private void q1() {
         System.out.println("Entro en el estado q1 -> " + this.getClass().getSimpleName());
-        if (cadena.charAt(position) == '=' && position + 1 == cadena.length()) {
+        if (Automata.cadena.charAt(Automata.position) == '=' && cadena.charAt(Automata.position + 1) == ' ') {
             aceptado = true;
             ++OperadorRelacional.cantidadOperadorRelacional;
         }

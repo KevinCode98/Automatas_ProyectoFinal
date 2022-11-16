@@ -1,8 +1,8 @@
 public final class Comentario extends Automata {
     public static int cantidadComentario = 0;
 
-    public Comentario(String cadena) {
-        super(cadena);
+    public Comentario() {
+        super();
         q0();
     }
 

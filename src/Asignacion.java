@@ -1,8 +1,8 @@
 public final class Asignacion extends Automata {
     public static int cantidadAsignacion = 0;
 
-    public Asignacion(String cadena) {
-        super(cadena);
+    public Asignacion() {
+        super();
         q0();
     }
 

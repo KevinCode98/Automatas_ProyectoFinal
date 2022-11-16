@@ -1,8 +1,8 @@
 public final class NumeroFlotante extends Automata {
     public static int cantidadNumeroFlotante = 0;
 
-    public NumeroFlotante(String cadena) {
-        super(cadena);
+    public NumeroFlotante() {
+        super();
         q0();
     }
 
@@ -10,25 +10,27 @@ public final class NumeroFlotante extends Automata {
         if (Automata.position >= Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-        if (cadena.charAt(position) >= 48 && cadena.charAt(position) <= 57) {
-            position++;
+        if ((Automata.cadena.charAt(Automata.position) >= 48 && Automata.cadena.charAt(Automata.position) <= 57) ||
+                Automata.cadena.charAt(Automata.position) == '-') {
+            Automata.position++;
             q0();
-        } else if (cadena.charAt(position) == '.') {
-            position++;
+        } else if (Automata.cadena.charAt(Automata.position) == '.') {
+            Automata.position++;
             q1();
         }
     }
 
     private void q1() {
-        if (position == cadena.length()) return;
+        if (Automata.position == Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q1 -> " + this.getClass().getSimpleName());
-        if (cadena.charAt(position) >= 48 && cadena.charAt(position) <= 57) {
-            position++;
-            if (position == cadena.length()) {
+        if (Automata.cadena.charAt(Automata.position) >= 48 && Automata.cadena.charAt(Automata.position) <= 57 ||
+                Automata.cadena.charAt(Automata.position) == '-') {
+            if (cadena.charAt(Automata.position + 1) == ' ') {
                 aceptado = true;
                 ++NumeroFlotante.cantidadNumeroFlotante;
             }
+            Automata.position++;
             q1();
         }
     }

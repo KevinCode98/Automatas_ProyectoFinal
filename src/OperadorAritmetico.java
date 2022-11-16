@@ -1,8 +1,8 @@
 public final class OperadorAritmetico extends Automata {
     public static int cantidadOperadorAritmetico = 0;
 
-    public OperadorAritmetico(String cadena) {
-        super(cadena);
+    public OperadorAritmetico() {
+        super();
         q0();
     }
 
@@ -10,7 +10,9 @@ public final class OperadorAritmetico extends Automata {
         if (Automata.position >= Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-        if (cadena.charAt(position) == '+' || cadena.equals("-") || cadena.equals("*") || cadena.equals("/") || cadena.equals("%")) {
+        if ((Automata.cadena.charAt(position) == '+' || Automata.cadena.charAt(Automata.position) == '-' ||
+                Automata.cadena.charAt(Automata.position) == '*' || Automata.cadena.charAt(Automata.position) == '/' ||
+                Automata.cadena.charAt(Automata.position) == '%') && cadena.charAt(Automata.position + 1) == ' ') {
             aceptado = true;
             ++OperadorAritmetico.cantidadOperadorAritmetico;
         }

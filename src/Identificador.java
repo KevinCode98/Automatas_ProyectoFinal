@@ -9,8 +9,8 @@ public final class Identificador extends Automata {
             Arrays.asList("if", "else", "switch", "case", "default", "for", "while", "break", "int", "String", "double", "char"));
     private String identificador;
 
-    public Identificador(String cadena) {
-        super(cadena);
+    public Identificador() {
+        super();
         identificador = "";
         q0();
     }
