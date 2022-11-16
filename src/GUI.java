@@ -18,7 +18,7 @@ public class GUI extends JFrame {
     String fileContetText;
     FileNameExtensionFilter filter;
 
-    JTextArea fileContent;
+    JTextArea fileContent, tokensContent;
     public static JTextArea textArea;
     JScrollPane scroll;
 
@@ -37,6 +37,7 @@ public class GUI extends JFrame {
         path = new JLabel("File path: none selected yet");
         textArea = new JTextArea();
         fileContent = new JTextArea();
+        tokensContent = new JTextArea();
         fileContent.setEditable(false);
         scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -56,18 +57,18 @@ public class GUI extends JFrame {
                         Automata.cadena = fileContetText;
                         new ControlAutomata();
 
-//                        final StringBuilder sb = new StringBuilder(fileContent.getText()).append("\n\n");
-//                        sb.append("Asignación = ").append(Asignacion.cantidadAsignacion).append("\n");
-//                        sb.append("Comentario = ").append(Comentario.cantidadComentario).append("\n");
-//                        sb.append("Palabra reservadas = ").append(Identificador.cantidadPalabrasReservadas).append("\n");
-//                        sb.append("Identificador = ").append(Identificador.cantidadIdentificador).append("\n");
-//                        sb.append("Numero entero = ").append(NumeroEntero.cantidadNumeroEntero).append("\n");
-//                        sb.append("Numero flotante = ").append(NumeroFlotante.cantidadNumeroFlotante).append("\n");
-//                        sb.append("Operador lógico = ").append(OperadoLogico.cantidadOperadoLogico).append("\n");
-//                        sb.append("Operador aritmético = ").append(OperadorAritmetico.cantidadOperadorAritmetico).append("\n");
-//                        sb.append("Operador relacional = ").append(OperadorRelacional.cantidadOperadorRelacional).append("\n");
-//
-//                        textArea.setText(sb.toString());
+                        final StringBuilder sb = new StringBuilder(tokensContent.getText()).append("\n\n");
+                        sb.append("Asignación = ").append(Asignacion.cantidadAsignacion).append("\n");
+                        sb.append("Comentario = ").append(Comentario.cantidadComentario).append("\n");
+                        sb.append("Palabra reservadas = ").append(Identificador.cantidadPalabrasReservadas).append("\n");
+                        sb.append("Identificador = ").append(Identificador.cantidadIdentificador).append("\n");
+                        sb.append("Numero entero = ").append(NumeroEntero.cantidadNumeroEntero).append("\n");
+                        sb.append("Numero flotante = ").append(NumeroFlotante.cantidadNumeroFlotante).append("\n");
+                        sb.append("Operador lógico = ").append(OperadoLogico.cantidadOperadoLogico).append("\n");
+                        sb.append("Operador aritmético = ").append(OperadorAritmetico.cantidadOperadorAritmetico).append("\n");
+                        sb.append("Operador relacional = ").append(OperadorRelacional.cantidadOperadorRelacional).append("\n");
+
+                        tokensContent.setText(sb.toString());
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -105,7 +106,10 @@ public class GUI extends JFrame {
 
 //      Set CENTER layout configuration
         center = new JPanel(new GridLayout(2, 1, 100, 20));
-        center.add(fileContent);
+        JPanel centerCanvas = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        centerCanvas.add(fileContent);
+        centerCanvas.add(tokensContent);
+        center.add(centerCanvas);
         center.add(scroll);
         add(center, BorderLayout.CENTER);
     }
