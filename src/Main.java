@@ -1,19 +1,39 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     private static final Scanner s = new Scanner(System.in);
 
+    ArrayList<String> palabrasReservadas = (ArrayList<String>)
+            Arrays.asList("if", "else", "switch", "case", "default", "for", "while", "break", "int", "String", "double", "char");
+
     public static void main(String[] args) {
         System.out.print("Ingresa tu cadena: ");
         String cadena = s.nextLine();
 
-//        Comentario comentario = new Comentario(cadena);
-//        comentario.esComentario();
-//
-        NumeroEntero numeroEntero = new NumeroEntero(cadena);
-        numeroEntero.esNumeroEntero();
+        Automata asignacion = new Asignacion(cadena);
+        asignacion.esAceptado();
 
-//        NumeroFlotante numeroFlotante = new NumeroFlotante(cadena);
-//        numeroFlotante.esNumeroFlotante();
+        Automata comentario = new Comentario(cadena);
+        comentario.esAceptado();
+
+        Automata identificador = new Identificador(cadena);
+        identificador.esAceptado();
+
+        Automata numeroEntero = new NumeroEntero(cadena);
+        numeroEntero.esAceptado();
+
+        Automata numeroFlotante = new NumeroFlotante(cadena);
+        numeroFlotante.esAceptado();
+
+        Automata operadoLogico = new OperadoLogico(cadena);
+        operadoLogico.esAceptado();
+
+        Automata operadorAritmetico = new OperadorAritmetico(cadena);
+        operadorAritmetico.esAceptado();
+
+        Automata operadorRelacional = new OperadorRelacional(cadena);
+        operadorRelacional.esAceptado();
     }
 }

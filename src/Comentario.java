@@ -1,16 +1,12 @@
-public class Comentario {
-    private boolean aceptado;
-    private final String cadena;
-    private int position;
+public final class Comentario extends Automata {
 
     public Comentario(String cadena) {
-        this.position = 0;
-        this.cadena = cadena.replace(" ", "");
+        super(cadena);
         q0();
     }
 
-    private void q0() {
-        System.out.println("Entro en el estado q0");
+    protected void q0() {
+        System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
         if (cadena.charAt(position) == '/') {
             position++;
             q1();
@@ -18,7 +14,7 @@ public class Comentario {
     }
 
     private void q1() {
-        System.out.println("Entro en el estado q1");
+        System.out.println("Entro en el estado q1 -> " + this.getClass().getSimpleName());
         if (cadena.charAt(position) == '*') {
             position++;
             q2();
@@ -27,7 +23,7 @@ public class Comentario {
 
     private void q2() {
         if (position + 1 == cadena.length()) return;
-        System.out.println("Entro en el estado q2");
+        System.out.println("Entro en el estado q2 -> " + this.getClass().getSimpleName());
         if (cadena.charAt(position) == '*') {
             position++;
             q3();
@@ -38,7 +34,7 @@ public class Comentario {
     }
 
     private void q3() {
-        System.out.println("Entro en el estado q3");
+        System.out.println("Entro en el estado q3 -> " + this.getClass().getSimpleName());
         if (cadena.charAt(position) == '/') {
             position++;
             q4();
@@ -52,12 +48,7 @@ public class Comentario {
     }
 
     private void q4() {
-        System.out.println("Entro en el estado q4");
+        System.out.println("Entro en el estado q4 -> " + this.getClass().getSimpleName());
         aceptado = position == cadena.length();
-    }
-
-    public void esComentario() {
-        if (this.aceptado) System.out.println("Es un comentario");
-        else System.out.println("No es un comentario");
     }
 }

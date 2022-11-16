@@ -1,19 +1,15 @@
-public class NumeroFlotante {
-    private final String cadena;
-    private boolean aceptado;
-    private int position;
+public final class NumeroFlotante extends Automata {
+    public static int cantidadNumeroFlotante = 0;
 
     public NumeroFlotante(String cadena) {
-        this.cadena = cadena;
-        this.aceptado = false;
-        this.position = 0;
+        super(cadena);
         q0();
     }
 
-    private void q0() {
+    protected void q0() {
         if (position == cadena.length()) return;
 
-        System.out.println("Entro en el estado q0");
+        System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
         if (cadena.charAt(position) >= 48 && cadena.charAt(position) <= 57) {
             position++;
             q0();
@@ -23,31 +19,17 @@ public class NumeroFlotante {
         }
     }
 
-    // Puntos a tener en cuenta → Leer archivo .txt
-    // Esto lleva una interfaz gráfica
-
-    // 1.- Recibir la cadena
-    // 2.- Split de la cadena
-    // 3.- recorrido de todas las sub-cadenas
-    // 4.- System -> Saber si se encuentra en las palabras reservadas
-        // -> true: Next cadena
-        // -> false: posición de cadena para hacer la búsqueda de autómata signado
-            // -> NumeroEntero, NumeroFlotante, Comentario, igualación,etc....
-
-
     private void q1() {
-        if(position == cadena.length()) return;
+        if (position == cadena.length()) return;
 
-        System.out.println("Entro en el estado q1");
+        System.out.println("Entro en el estado q1 -> " + this.getClass().getSimpleName());
         if (cadena.charAt(position) >= 48 && cadena.charAt(position) <= 57) {
             position++;
-            if (position == cadena.length()) aceptado = true;
+            if (position == cadena.length()) {
+                aceptado = true;
+                ++NumeroFlotante.cantidadNumeroFlotante;
+            }
             q1();
         }
-    }
-
-    public void esNumeroFlotante() {
-        if (this.aceptado) System.out.println("Es un número flotante.");
-        else System.out.println("No es un número flotante.");
     }
 }
