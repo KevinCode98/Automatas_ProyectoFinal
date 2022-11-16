@@ -7,6 +7,8 @@ public final class OperadoLogico extends Automata {
     }
 
     protected void q0() {
+        if (Automata.position >= Automata.cadena.length()) return;
+
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
         if (cadena.equals("!")) aceptado = true;
         if ((cadena.charAt(position) == '&') || (cadena.charAt(position) == '|')) {
