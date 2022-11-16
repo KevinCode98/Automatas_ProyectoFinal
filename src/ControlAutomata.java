@@ -14,6 +14,7 @@ public class ControlAutomata {
 
     private void q1() {
         System.out.println("cadena.charAt(Automata.position) = " + Automata.cadena.charAt(Automata.position));
+        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "cadena.charAt(Automata.position) = " + Automata.cadena.charAt(Automata.position));
         if (new Identificador().esAceptado()) return;
         if (new Asignacion().esAceptado()) return;
         if (new NumeroEntero().esAceptado()) return;

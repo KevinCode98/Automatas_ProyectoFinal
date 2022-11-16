@@ -10,6 +10,7 @@ public final class OperadoLogico extends Automata {
         if (Automata.position >= Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
+        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q0 -> " + this.getClass().getSimpleName());
         if (Automata.cadena.charAt(Automata.position) == '!') aceptado = true;
         if ((Automata.cadena.charAt(Automata.position) == '&') || (Automata.cadena.charAt(Automata.position) == '|')) {
             Automata.position++;
@@ -21,6 +22,7 @@ public final class OperadoLogico extends Automata {
         if (Automata.position >= Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q1 -> " + this.getClass().getSimpleName());
+        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q1 -> " + this.getClass().getSimpleName());
         if (((Automata.cadena.charAt(Automata.position) == '&') || (Automata.cadena.charAt(Automata.position) == '|')) &&
                 cadena.charAt(Automata.position + 1) == ' ') {
             aceptado = true;

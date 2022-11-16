@@ -15,26 +15,32 @@ public class GUI extends JFrame {
     JFileChooser fileChooser;
     JLabel path;
     File file;
-
-    String fileContet;
-
+    String fileContetText;
     FileNameExtensionFilter filter;
 
-    JTextArea textArea;
+    JTextArea fileContent;
+    public static JTextArea textArea;
+    JScrollPane scroll;
+
     public GUI() {
-        super("Animacion2D");
+        super("Analizador sintactico");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 500);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
         setLayout(new BorderLayout());
+
         fileChooser = new JFileChooser();
         fileLoader = new Button("Select file");
         filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
         fileChooser.setFileFilter(filter);
-        path = new JLabel("Path: ");
+        path = new JLabel("File path: none selected yet");
         textArea = new JTextArea();
+        fileContent = new JTextArea();
+        fileContent.setEditable(false);
+        scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
 
         fileLoader.addActionListener((new ActionListener() {
             @Override
@@ -42,12 +48,14 @@ public class GUI extends JFrame {
                 fileChooser.showOpenDialog(null);
 
                 if (actionEvent.getActionCommand().equals("Select file") && fileChooser.getSelectedFile().getAbsolutePath().endsWith(".txt")) {
-                    path.setText("Path: " + fileChooser.getSelectedFile().getAbsolutePath());
+                    path.setText("File path: " + fileChooser.getSelectedFile().getAbsolutePath());
                     file = new File(fileChooser.getSelectedFile().getAbsolutePath());
 
                     try {
-                        fileContet = Files.readString(Paths.get(fileChooser.getSelectedFile().getAbsolutePath()));
-                        textArea.setText(fileContet);
+                        fileContetText = Files.readString(Paths.get(fileChooser.getSelectedFile().getAbsolutePath()));
+                        fileContent.setText(fileContetText);
+                        Automata.cadena = fileContetText;
+                        new ControlAutomata();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -61,36 +69,31 @@ public class GUI extends JFrame {
         }));
 
 
-        //set north layout
-        north = new JPanel(new GridLayout(2, 1, 50, 10));
-        north.add(fileLoader);
-        north.add(path);
-        north.add(path);
+        //set NORTH layout
+        north = new JPanel(new GridLayout(1, 1, 0, 0));
+        JPanel northCanvas = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        northCanvas.add(fileLoader);
+        northCanvas.add(path);
+        north.add(northCanvas);
         add(north, BorderLayout.NORTH);
 
-//        //set south layout
+
+//      Set SOUTH layout configuration
         south = new JPanel();
-        south.setBackground(Color.blue);
-//        south.setLayout(new SpringLayout());
         add(south, BorderLayout.SOUTH);
-//
-//        //set west layout
+
+//      Set WEST layout configuration
         west = new JPanel();
-        west.setBackground(Color.green);
-//        west.setLayout(new SpringLayout());
         add(west, BorderLayout.WEST);
-//
-//        //set east layout
+
+//      Set EAST layout configuration
         east = new JPanel();
-        east.setBackground(Color.pink);
-//        east.setLayout(new SpringLayout());
         add(east, BorderLayout.EAST);
 
-        //set center layout
-        center = new JPanel();
-        center.setBackground(new Color(0x7272D2));
-        center.add(textArea);
-//        east.setLayout(new SpringLayout());
+//      Set CENTER layout configuration
+        center = new JPanel(new GridLayout(2, 1, 100, 20));
+        center.add(fileContent);
+        center.add(scroll);
         add(center, BorderLayout.CENTER);
     }
 }
