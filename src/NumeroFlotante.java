@@ -7,7 +7,7 @@ public final class NumeroFlotante extends Automata {
     }
 
     protected void q0() {
-        if (position == cadena.length()) return;
+        if (Automata.position >= Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
         if (cadena.charAt(position) >= 48 && cadena.charAt(position) <= 57) {

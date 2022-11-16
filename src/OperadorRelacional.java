@@ -7,6 +7,8 @@ public final class OperadorRelacional extends Automata {
     }
 
     protected void q0() {
+        if (Automata.position >= Automata.cadena.length()) return;
+
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
         // Saber si el operador s<olo cuenta con un signo
         if ((cadena.charAt(position) == '<' || cadena.charAt(position) == '>') && cadena.length() == 1) {

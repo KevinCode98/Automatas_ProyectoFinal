@@ -7,8 +7,10 @@ public final class OperadorAritmetico extends Automata {
     }
 
     protected void q0() {
+        if (Automata.position >= Automata.cadena.length()) return;
+
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-        if (cadena.equals("+") || cadena.equals("-") || cadena.equals("*") || cadena.equals("/") || cadena.equals("%")) {
+        if (cadena.charAt(position) == '+' || cadena.equals("-") || cadena.equals("*") || cadena.equals("/") || cadena.equals("%")) {
             aceptado = true;
             ++OperadorAritmetico.cantidadOperadorAritmetico;
         }

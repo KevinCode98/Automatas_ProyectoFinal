@@ -1,39 +1,39 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     private static final Scanner s = new Scanner(System.in);
 
-    ArrayList<String> palabrasReservadas = (ArrayList<String>)
-            Arrays.asList("if", "else", "switch", "case", "default", "for", "while", "break", "int", "String", "double", "char");
-
     public static void main(String[] args) {
         System.out.print("Ingresa tu cadena: ");
-        String cadena = s.nextLine();
+        String cadena = s.nextLine() + " ";
+        Automata.cadena = cadena;
+        inicializarAutomata(cadena);
 
-        Automata asignacion = new Asignacion(cadena);
-        asignacion.esAceptado();
+        System.out.println("\n\n--------------- RESULTADO ---------------");
+        System.out.println("Asignacion.cantidadAsignacion = " + Asignacion.cantidadAsignacion);
+        System.out.println("Comentario.cantidadComentario = " + Comentario.cantidadComentario);
+        System.out.println("Identificador.cantidadPalabrasReservadas = " + Identificador.cantidadPalabrasReservadas);
+        System.out.println("Identificador.cantidadIdentificador = " + Identificador.cantidadIdentificador);
+        System.out.println("NumeroEntero.cantidadNumeroEntero = " + NumeroEntero.cantidadNumeroEntero);
+        System.out.println("NumeroFlotante.cantidadNumeroFlotante = " + NumeroFlotante.cantidadNumeroFlotante);
+        System.out.println("OperadoLogico.cantidadOperadoLogico = " + OperadoLogico.cantidadOperadoLogico);
+        System.out.println("OperadorAritmetico.cantidadOperadorAritmetico = " + OperadorAritmetico.cantidadOperadorAritmetico);
+        System.out.println("OperadorRelacional.cantidadOperadorRelacional = " + OperadorRelacional.cantidadOperadorRelacional);
+    }
 
-        Automata comentario = new Comentario(cadena);
-        comentario.esAceptado();
+    public static void inicializarAutomata(String cadena) {
+        System.out.println("\n-------------------------------------\n");
+        if (Automata.position + 1 >= Automata.cadena.length()) return;
 
-        Automata identificador = new Identificador(cadena);
-        identificador.esAceptado();
-
-        Automata numeroEntero = new NumeroEntero(cadena);
-        numeroEntero.esAceptado();
-
-        Automata numeroFlotante = new NumeroFlotante(cadena);
-        numeroFlotante.esAceptado();
-
-        Automata operadoLogico = new OperadoLogico(cadena);
-        operadoLogico.esAceptado();
-
-        Automata operadorAritmetico = new OperadorAritmetico(cadena);
-        operadorAritmetico.esAceptado();
-
-        Automata operadorRelacional = new OperadorRelacional(cadena);
-        operadorRelacional.esAceptado();
+        if (cadena.charAt(Automata.position) == ' ') Automata.position++;
+        System.out.println("cadena.charAt(Automata.position) = " + cadena.charAt(Automata.position));
+        new Identificador(cadena).esAceptado();
+        new Asignacion(cadena).esAceptado();
+        new NumeroEntero(cadena).esAceptado(); // ->
+        new NumeroFlotante(cadena).esAceptado();
+        new OperadoLogico(cadena).esAceptado();
+        new OperadorAritmetico(cadena).esAceptado();
+        new OperadorRelacional(cadena).esAceptado();
+        new Comentario(cadena).esAceptado();
     }
 }
