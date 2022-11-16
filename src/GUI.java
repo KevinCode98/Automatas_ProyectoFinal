@@ -34,7 +34,7 @@ public class GUI extends JFrame {
         filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
         fileChooser.setFileFilter(filter);
         path = new JLabel("Path: ");
-
+        textArea = new JTextArea();
 
         fileLoader.addActionListener((new ActionListener() {
             @Override
@@ -47,7 +47,7 @@ public class GUI extends JFrame {
 
                     try {
                         fileContet = Files.readString(Paths.get(fileChooser.getSelectedFile().getAbsolutePath()));
-//                        textArea.setText(fileContet);
+                        textArea.setText(fileContet);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -89,7 +89,7 @@ public class GUI extends JFrame {
         //set center layout
         center = new JPanel();
         center.setBackground(new Color(0x7272D2));
-//        center.add(textArea);
+        center.add(textArea);
 //        east.setLayout(new SpringLayout());
         add(center, BorderLayout.CENTER);
 
