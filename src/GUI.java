@@ -30,7 +30,6 @@ public class GUI extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setLayout(new BorderLayout());
-
         fileChooser = new JFileChooser();
         fileLoader = new Button("Select file");
         filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
@@ -56,6 +55,20 @@ public class GUI extends JFrame {
                         fileContent.setText(fileContetText);
                         Automata.cadena = fileContetText;
                         new ControlAutomata();
+
+//                        final StringBuilder sb = new StringBuilder(fileContent.getText()).append("\n\n");
+//                        sb.append("Asignación = ").append(Asignacion.cantidadAsignacion).append("\n");
+//                        sb.append("Comentario = ").append(Comentario.cantidadComentario).append("\n");
+//                        sb.append("Palabra reservadas = ").append(Identificador.cantidadPalabrasReservadas).append("\n");
+//                        sb.append("Identificador = ").append(Identificador.cantidadIdentificador).append("\n");
+//                        sb.append("Numero entero = ").append(NumeroEntero.cantidadNumeroEntero).append("\n");
+//                        sb.append("Numero flotante = ").append(NumeroFlotante.cantidadNumeroFlotante).append("\n");
+//                        sb.append("Operador lógico = ").append(OperadoLogico.cantidadOperadoLogico).append("\n");
+//                        sb.append("Operador aritmético = ").append(OperadorAritmetico.cantidadOperadorAritmetico).append("\n");
+//                        sb.append("Operador relacional = ").append(OperadorRelacional.cantidadOperadorRelacional).append("\n");
+//
+//                        textArea.setText(sb.toString());
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

@@ -13,7 +13,8 @@ public final class OperadorAritmetico extends Automata {
         GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q0 -> " + this.getClass().getSimpleName());
         if ((Automata.cadena.charAt(position) == '+' || Automata.cadena.charAt(Automata.position) == '-' ||
                 Automata.cadena.charAt(Automata.position) == '*' || Automata.cadena.charAt(Automata.position) == '/' ||
-                Automata.cadena.charAt(Automata.position) == '%') && cadena.charAt(Automata.position + 1) == ' ') {
+                Automata.cadena.charAt(Automata.position) == '%') &&
+                (Automata.cadena.charAt(Automata.position + 1) == ' ' || Automata.cadena.charAt(Automata.position + 1) == '\n')) {
             aceptado = true;
             ++OperadorAritmetico.cantidadOperadorAritmetico;
         }

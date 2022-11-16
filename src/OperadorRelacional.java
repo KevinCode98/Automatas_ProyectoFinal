@@ -13,8 +13,9 @@ public final class OperadorRelacional extends Automata {
         GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q0 -> " + this.getClass().getSimpleName());
         // Saber si el operador s<olo cuenta con un signo
         if ((Automata.cadena.charAt(Automata.position) == '<' || Automata.cadena.charAt(Automata.position) == '>')
-                && cadena.charAt(Automata.position + 1) == ' ') {
+                && Automata.cadena.charAt(Automata.position + 1) == ' ' || Automata.cadena.charAt(Automata.position + 1) == '\n') {
             aceptado = true;
+            ++OperadorRelacional.cantidadOperadorRelacional;
             return;
         }
         // Saber si el operador cuenta con dos signos
@@ -28,7 +29,8 @@ public final class OperadorRelacional extends Automata {
     private void q1() {
         System.out.println("Entro en el estado q1 -> " + this.getClass().getSimpleName());
         GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q1 -> " + this.getClass().getSimpleName());
-        if (Automata.cadena.charAt(Automata.position) == '=' && cadena.charAt(Automata.position + 1) == ' ') {
+        if (Automata.cadena.charAt(Automata.position) == '=' && (Automata.cadena.charAt(Automata.position + 1) == ' ' ||
+                Automata.cadena.charAt(Automata.position) == '\n')) {
             aceptado = true;
             ++OperadorRelacional.cantidadOperadorRelacional;
         }

@@ -5,8 +5,7 @@ public class ControlAutomata {
 
     private void q0() {
         if (Automata.position + 1 >= Automata.cadena.length()) return;
-        if (Automata.cadena.charAt(Automata.position) == ' ' || Automata.cadena.charAt(Automata.position) == '\n'
-                || Automata.cadena.charAt(Automata.position) == '\t') {
+        if (Automata.cadena.charAt(Automata.position) == ' ' || Automata.cadena.charAt(Automata.position) == '\n') {
             Automata.position++;
             q0();
         } else q1();
