@@ -10,7 +10,8 @@ public final class Asignacion extends Automata {
         if (Automata.position >= Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-        if (cadena.charAt(Automata.position) == '=' && cadena.charAt(Automata.position + 1) == ' ') {
+        if (Automata.cadena.charAt(Automata.position) == '=' && (Automata.cadena.charAt(Automata.position + 1) == ' ' ||
+                Automata.cadena.charAt(Automata.position) == '\n')) {
             aceptado = true;
             ++Asignacion.cantidadAsignacion;
         }

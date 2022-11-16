@@ -21,8 +21,9 @@ public class GUI extends JFrame {
     FileNameExtensionFilter filter;
 
     JTextArea textArea;
+
     public GUI() {
-        super("Animacion2D");
+        super("Lector de Automatas");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 500);
         setResizable(false);
@@ -46,8 +47,22 @@ public class GUI extends JFrame {
                     file = new File(fileChooser.getSelectedFile().getAbsolutePath());
 
                     try {
-                        fileContet = Files.readString(Paths.get(fileChooser.getSelectedFile().getAbsolutePath()));
-                        textArea.setText(fileContet);
+                        fileContet = Files.readString(Paths.get(fileChooser.getSelectedFile().getAbsolutePath())) + " ";
+                        Automata.cadena = fileContet;
+                        new ControlAutomata();
+                        final StringBuilder sb = new StringBuilder(fileContet).append("\n\n");
+                        sb.append("Asignación = ").append(Asignacion.cantidadAsignacion).append("\n");
+                        sb.append("Comentario = ").append(Comentario.cantidadComentario).append("\n");
+                        sb.append("Palabra reservadas = ").append(Identificador.cantidadPalabrasReservadas).append("\n");
+                        sb.append("Identificador = ").append(Identificador.cantidadIdentificador).append("\n");
+                        sb.append("Numero entero = ").append(NumeroEntero.cantidadNumeroEntero).append("\n");
+                        sb.append("Numero flotante = ").append(NumeroFlotante.cantidadNumeroFlotante).append("\n");
+                        sb.append("Operador lógico = ").append(OperadoLogico.cantidadOperadoLogico).append("\n");
+                        sb.append("Operador aritmético = ").append(OperadorAritmetico.cantidadOperadorAritmetico).append("\n");
+                        sb.append("Operador relacional = ").append(OperadorRelacional.cantidadOperadorRelacional).append("\n");
+
+                        textArea.setText(sb.toString());
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

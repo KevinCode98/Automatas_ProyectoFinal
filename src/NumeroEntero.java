@@ -10,9 +10,9 @@ public final class NumeroEntero extends Automata {
         if (Automata.position >= Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-        if ((cadena.charAt(Automata.position) >= 48 && cadena.charAt(Automata.position) <= 57 )||
-                Automata.cadena.charAt(Automata.position) == '-') {
-            if (cadena.charAt(Automata.position + 1) == ' ') {
+        if ((Automata.cadena.charAt(Automata.position) >= 48 && Automata.cadena.charAt(Automata.position) <= 57) ||
+                (Automata.cadena.charAt(Automata.position) == '-' && Automata.cadena.charAt(position + 1) != ' ')) {
+            if (cadena.charAt(Automata.position + 1) == ' ' || Automata.cadena.charAt(Automata.position + 1) == '\n') {
                 aceptado = true;
                 ++NumeroEntero.cantidadNumeroEntero;
                 return;

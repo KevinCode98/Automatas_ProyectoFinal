@@ -19,11 +19,11 @@ public final class Identificador extends Automata {
         if (Automata.position >= Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-        identificador += cadena.charAt(position);
-        if ((cadena.charAt(Automata.position) >= 65 && cadena.charAt(Automata.position) <= 90) ||
-                (cadena.charAt(Automata.position) >= 97 && cadena.charAt(Automata.position) <= 122) ||
-                (cadena.charAt(Automata.position) == '_')) {
-            if (cadena.charAt(Automata.position + 1) == ' ') {
+        identificador += Automata.cadena.charAt(position);
+        if ((Automata.cadena.charAt(Automata.position) >= 65 && Automata.cadena.charAt(Automata.position) <= 90) ||
+                (Automata.cadena.charAt(Automata.position) >= 97 && Automata.cadena.charAt(Automata.position) <= 122) ||
+                (Automata.cadena.charAt(Automata.position) == '_')) {
+            if (Automata.cadena.charAt(Automata.position + 1) == ' ' || Automata.cadena.charAt(Automata.position + 1) == '\n') {
                 System.out.println("identificador = " + identificador);
                 aceptado = true;
 

@@ -11,7 +11,7 @@ public final class NumeroFlotante extends Automata {
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
         if ((Automata.cadena.charAt(Automata.position) >= 48 && Automata.cadena.charAt(Automata.position) <= 57) ||
-                Automata.cadena.charAt(Automata.position) == '-') {
+                (Automata.cadena.charAt(Automata.position) == '-' && Automata.cadena.charAt(position + 1) != ' ')) {
             Automata.position++;
             q0();
         } else if (Automata.cadena.charAt(Automata.position) == '.') {
@@ -24,9 +24,8 @@ public final class NumeroFlotante extends Automata {
         if (Automata.position == Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q1 -> " + this.getClass().getSimpleName());
-        if (Automata.cadena.charAt(Automata.position) >= 48 && Automata.cadena.charAt(Automata.position) <= 57 ||
-                Automata.cadena.charAt(Automata.position) == '-') {
-            if (cadena.charAt(Automata.position + 1) == ' ') {
+        if ((Automata.cadena.charAt(Automata.position) >= 48 && Automata.cadena.charAt(Automata.position) <= 57)) {
+            if (Automata.cadena.charAt(Automata.position + 1) == ' ' || Automata.cadena.charAt(Automata.position + 1) == '\n') {
                 aceptado = true;
                 ++NumeroFlotante.cantidadNumeroFlotante;
             }
