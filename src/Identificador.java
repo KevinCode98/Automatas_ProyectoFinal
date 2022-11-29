@@ -16,6 +16,7 @@ public final class Identificador extends Automata {
     protected void q0() {
         if (Automata.position >= Automata.cadena.length()) return;
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
+//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q0 -> " + this.getClass().getSimpleName());
         if ((Automata.cadena.charAt(Automata.position) >= 65 && Automata.cadena.charAt(Automata.position) <= 90) ||
                 (Automata.cadena.charAt(Automata.position) >= 97 && Automata.cadena.charAt(Automata.position) <= 122) ||
                 (Automata.cadena.charAt(Automata.position) == '_')) {
@@ -23,6 +24,7 @@ public final class Identificador extends Automata {
             identificador += Automata.cadena.charAt(Automata.position);
             if (palabrasReservadas.contains(identificador) &&
                     ControlAutomata.saberSiHayEspacio(Automata.position + 1)) {
+//                GUI.textArea.setText(GUI.textArea.getText() + "\n" + "identificador Palabra reservada = " + identificador);
                 aceptado = true;
                 System.out.println("identificador = " + identificador);
                 Identificador.cantidadPalabrasReservadas++;
@@ -30,6 +32,7 @@ public final class Identificador extends Automata {
             }
 
             if (ControlAutomata.saberSiHayEspacio(Automata.position + 1)) {
+//                GUI.textArea.setText(GUI.textArea.getText() + "\n" + "identificador = " + identificador);
                 aceptado = true;
                 System.out.println("identificador = " + identificador);
                 Identificador.cantidadIdentificador++;

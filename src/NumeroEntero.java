@@ -11,6 +11,7 @@ public final class NumeroEntero extends Automata {
         if (Automata.position >= Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
+//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q0 -> " + this.getClass().getSimpleName());
         if ((Automata.cadena.charAt(Automata.position) >= 48 && Automata.cadena.charAt(Automata.position) <= 57) ||
                 (Automata.cadena.charAt(Automata.position) == '-' && Automata.cadena.charAt(position + 1) != ' ')) {
 
