@@ -13,7 +13,7 @@ public final class OperadorAritmetico extends Automata {
         if ((Automata.cadena.charAt(position) == '+' || Automata.cadena.charAt(Automata.position) == '-' ||
                 Automata.cadena.charAt(Automata.position) == '*' || Automata.cadena.charAt(Automata.position) == '/' ||
                 Automata.cadena.charAt(Automata.position) == '%') &&
-                (Automata.cadena.charAt(Automata.position + 1) == ' ' || Automata.cadena.charAt(Automata.position + 1) == '\n')) {
+                (ControlAutomata.saberSiHayEspacio(Automata.position + 1))) {
             aceptado = true;
             ++OperadorAritmetico.cantidadOperadorAritmetico;
         }

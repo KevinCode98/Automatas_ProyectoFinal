@@ -51,9 +51,7 @@ public final class Comentario extends Automata {
 
     private void q4() {
         System.out.println("Entro en el estado q4 -> " + this.getClass().getSimpleName());
-        if (cadena.charAt(Automata.position + 1) == ' ' || cadena.charAt(Automata.position + 1) == '\n') {
-            aceptado = true;
-            ++Comentario.cantidadComentario;
-        }
+        aceptado = true;
+        ++Comentario.cantidadComentario;
     }
 }

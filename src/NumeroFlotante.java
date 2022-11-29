@@ -25,9 +25,10 @@ public final class NumeroFlotante extends Automata {
 
         System.out.println("Entro en el estado q1 -> " + this.getClass().getSimpleName());
         if ((Automata.cadena.charAt(Automata.position) >= 48 && Automata.cadena.charAt(Automata.position) <= 57)) {
-            if (Automata.cadena.charAt(Automata.position + 1) == ' ' || Automata.cadena.charAt(Automata.position + 1) == '\n') {
+            if (ControlAutomata.saberSiHayEspacio(Automata.position + 1)) {
                 aceptado = true;
                 ++NumeroFlotante.cantidadNumeroFlotante;
+                return;
             }
             Automata.position++;
             q1();

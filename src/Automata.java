@@ -16,11 +16,12 @@ public abstract class Automata {
             System.out.println("Es un " + this.getClass().getSimpleName() + ".");
             if (Automata.position <= Automata.cadena.length()) {
                 Automata.position++;
-                new ControlAutomata();
+                ControlAutomata.automataEncontrado = true;
                 return this.aceptado;
             }
         } else {
             System.out.println("No es un " + this.getClass().getSimpleName() + ".");
+            ControlAutomata.automataEncontrado = false;
             Automata.position = Automata.inicioPosition;
             return this.aceptado;
         }

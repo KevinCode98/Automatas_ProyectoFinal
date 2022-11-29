@@ -1,7 +1,7 @@
-public final class Asignacion extends Automata {
-    public static int cantidadAsignacion = 0;
+public class OperadorPuntoyComa extends  Automata{
+    public static int cantidadOperadorPuntoyComa = 0;
 
-    public Asignacion() {
+    public OperadorPuntoyComa() {
         super();
         q0();
     }
@@ -10,9 +10,9 @@ public final class Asignacion extends Automata {
         if (Automata.position >= Automata.cadena.length()) return;
 
         System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-        if (Automata.cadena.charAt(Automata.position) == '=') {
+        if (Automata.cadena.charAt(Automata.position) == ';') {
             aceptado = true;
-            ++Asignacion.cantidadAsignacion;
+            ++OperadorPuntoyComa.cantidadOperadorPuntoyComa;
         }
     }
 }

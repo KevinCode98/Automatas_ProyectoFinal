@@ -31,9 +31,7 @@ public class Main {
 
         try {
             SwingUtilities.invokeAndWait(ventana);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
+        } catch (InterruptedException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }

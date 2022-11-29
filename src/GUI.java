@@ -51,17 +51,21 @@ public class GUI extends JFrame {
                         Automata.cadena = fileContet;
                         new ControlAutomata();
                         final StringBuilder sb = new StringBuilder(fileContet).append("\n\n");
-                        sb.append("Asignación = ").append(Asignacion.cantidadAsignacion).append("\n");
-                        sb.append("Comentario = ").append(Comentario.cantidadComentario).append("\n");
                         sb.append("Palabra reservadas = ").append(Identificador.cantidadPalabrasReservadas).append("\n");
                         sb.append("Identificador = ").append(Identificador.cantidadIdentificador).append("\n");
-                        sb.append("Numero entero = ").append(NumeroEntero.cantidadNumeroEntero).append("\n");
-                        sb.append("Numero flotante = ").append(NumeroFlotante.cantidadNumeroFlotante).append("\n");
+                        sb.append("Operador relacional = ").append(OperadorRelacional.cantidadOperadorRelacional).append("\n");
                         sb.append("Operador lógico = ").append(OperadoLogico.cantidadOperadoLogico).append("\n");
                         sb.append("Operador aritmético = ").append(OperadorAritmetico.cantidadOperadorAritmetico).append("\n");
-                        sb.append("Operador relacional = ").append(OperadorRelacional.cantidadOperadorRelacional).append("\n");
+                        sb.append("Asignación = ").append(Asignacion.cantidadAsignacion).append("\n");
+                        sb.append("Numero entero = ").append(NumeroEntero.cantidadNumeroEntero).append("\n");
+                        sb.append("Numero decimales = ").append(NumeroFlotante.cantidadNumeroFlotante).append("\n");
+                        sb.append("Comentario = ").append(Comentario.cantidadComentario).append("\n");
+                        sb.append("Parentesis = ").append(Parentesis.cantidadParentesis).append("\n");
+                        sb.append("Llaves = ").append(Llaves.cantidadLlaves).append("\n");
+                        sb.append("Errores = ").append(Error.cantindadError).append("\n");
 
                         textArea.setText(sb.toString());
+                        System.out.println(sb);
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);
