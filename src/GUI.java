@@ -20,7 +20,7 @@ public class GUI extends JFrame {
     private String fileInnerText;
     private FileNameExtensionFilter filter;
     private JScrollPane scrollableLog, scrollableFileContent, scrollableTokensContent;
-    public static StringBuilder logStringBuilder;
+    public static StringBuilder logStringBuilder, tokensStringBuilder;
 
     public GUI() {
         super("Analizador sintactico");
@@ -29,8 +29,6 @@ public class GUI extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setLayout(new BorderLayout());
-
-        logStringBuilder = new StringBuilder();
 
         fileChooser = new JFileChooser();
         fileLoader = new Button("Select file");
@@ -60,7 +58,7 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 fileChooser.showOpenDialog(null);
-
+                resetCounters();
                 if (actionEvent.getActionCommand().equals("Select file") && fileChooser.getSelectedFile().getAbsolutePath().endsWith(".txt")) {
                     path.setText("File path: " + fileChooser.getSelectedFile().getAbsolutePath());
                     file = new File(fileChooser.getSelectedFile().getAbsolutePath());
@@ -69,24 +67,22 @@ public class GUI extends JFrame {
                         fileInnerText = Files.readString(Paths.get(fileChooser.getSelectedFile().getAbsolutePath()));
                         fileContentTextArea.setText(fileInnerText);
                         Automata.cadena = fileInnerText;
+
                         new ControlAutomata();
 
-                        final StringBuilder sb = new StringBuilder(tokensContentTextArea.getText());
-                        sb.append("Palabra reservadas = ").append(Identificador.cantidadPalabrasReservadas + "\n");
-                        sb.append("Identificador = ").append(Identificador.cantidadIdentificador + "\n");
-                        sb.append("Operador relacional = ").append(OperadorRelacional.cantidadOperadorRelacional + "\n");
-                        sb.append("Operador lógico = ").append(OperadoLogico.cantidadOperadoLogico + "\n");
-                        sb.append("Operador aritmético = ").append(OperadorAritmetico.cantidadOperadorAritmetico + "\n");
-                        sb.append("Asignación = ").append(Asignacion.cantidadAsignacion + "\n");
-                        sb.append("Numero entero = ").append(NumeroEntero.cantidadNumeroEntero + "\n");
-                        sb.append("Numero decimales = ").append(NumeroFlotante.cantidadNumeroFlotante + "\n");
-                        sb.append("Comentario = ").append(Comentario.cantidadComentario + "\n");
-                        sb.append("Parentesis = ").append(Parentesis.cantidadParentesis + "\n");
-                        sb.append("Llaves = ").append(Llaves.cantidadLlaves + "\n");
-                        sb.append("Errores = ").append(Error.cantindadError + "\n");
-
-                        tokensContentTextArea.setText(sb.toString());
-
+                        tokensStringBuilder.append("Palabra reservadas = " + Identificador.cantidadPalabrasReservadas + "\n");
+                        tokensStringBuilder.append("Identificador = " + Identificador.cantidadIdentificador + "\n");
+                        tokensStringBuilder.append("Operador relacional = " + OperadorRelacional.cantidadOperadorRelacional + "\n");
+                        tokensStringBuilder.append("Operador lógico = " + OperadoLogico.cantidadOperadoLogico + "\n");
+                        tokensStringBuilder.append("Operador aritmético = " + OperadorAritmetico.cantidadOperadorAritmetico + "\n");
+                        tokensStringBuilder.append("Asignación = " + Asignacion.cantidadAsignacion + "\n");
+                        tokensStringBuilder.append("Numero entero = " + NumeroEntero.cantidadNumeroEntero + "\n");
+                        tokensStringBuilder.append("Numero decimales = " + NumeroFlotante.cantidadNumeroFlotante + "\n");
+                        tokensStringBuilder.append("Comentario = " + Comentario.cantidadComentario + "\n");
+                        tokensStringBuilder.append("Parentesis = " + Parentesis.cantidadParentesis + "\n");
+                        tokensStringBuilder.append("Llaves = " + Llaves.cantidadLlaves + "\n");
+                        tokensStringBuilder.append("Errores = " + Error.cantindadError + "\n");
+                        tokensContentTextArea.setText(tokensStringBuilder.toString());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -131,7 +127,25 @@ public class GUI extends JFrame {
         add(center, BorderLayout.CENTER);
     }
 
-    public static void appendLogTextArea(){
+    private void resetCounters() {
+        Identificador.cantidadPalabrasReservadas = 0;
+        Identificador.cantidadIdentificador = 0;
+        OperadorRelacional.cantidadOperadorRelacional = 0;
+        OperadoLogico.cantidadOperadoLogico = 0;
+        OperadorAritmetico.cantidadOperadorAritmetico = 0;
+        Asignacion.cantidadAsignacion = 0;
+        NumeroEntero.cantidadNumeroEntero = 0;
+        NumeroFlotante.cantidadNumeroFlotante = 0;
+        Comentario.cantidadComentario = 0;
+        Parentesis.cantidadParentesis = 0;
+        Llaves.cantidadLlaves = 0;
+        Error.cantindadError = 0;
+        tokensStringBuilder = new StringBuilder();
+        logStringBuilder = new StringBuilder();
+        Automata.position = 0;
+    }
+
+    public static void appendLogTextArea() {
         logTextArea.setText(logStringBuilder.toString());
     }
 }
