@@ -8,11 +8,11 @@ public class OperadorPuntoyComa extends  Automata{
 
     protected void q0() {
         if (Automata.position >= Automata.cadena.length()) return;
-
-        System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
+        GUI.logStringBuilder.append("Entro en el estado q0 -> " + this.getClass().getSimpleName()+ "\n");
         if (Automata.cadena.charAt(Automata.position) == ';') {
             aceptado = true;
             ++OperadorPuntoyComa.cantidadOperadorPuntoyComa;
         }
+        GUI.appendLogTextArea();
     }
 }

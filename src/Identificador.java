@@ -15,31 +15,30 @@ public final class Identificador extends Automata {
 
     protected void q0() {
         if (Automata.position >= Automata.cadena.length()) return;
-        System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q0 -> " + this.getClass().getSimpleName());
+        GUI.logStringBuilder.append("Entro en el estado q0 -> " + this.getClass().getSimpleName()+ "\n");
+
         if ((Automata.cadena.charAt(Automata.position) >= 65 && Automata.cadena.charAt(Automata.position) <= 90) ||
                 (Automata.cadena.charAt(Automata.position) >= 97 && Automata.cadena.charAt(Automata.position) <= 122) ||
                 (Automata.cadena.charAt(Automata.position) == '_')) {
 
             identificador += Automata.cadena.charAt(Automata.position);
-            if (palabrasReservadas.contains(identificador) &&
-                    ControlAutomata.saberSiHayEspacio(Automata.position + 1)) {
-//                GUI.textArea.setText(GUI.textArea.getText() + "\n" + "identificador Palabra reservada = " + identificador);
+            if (palabrasReservadas.contains(identificador) && ControlAutomata.saberSiHayEspacio(Automata.position + 1)) {
                 aceptado = true;
-                System.out.println("identificador = " + identificador);
+                GUI.logStringBuilder.append("identificador = " + identificador+ "\n");
+
                 Identificador.cantidadPalabrasReservadas++;
                 return;
             }
 
             if (ControlAutomata.saberSiHayEspacio(Automata.position + 1)) {
-//                GUI.textArea.setText(GUI.textArea.getText() + "\n" + "identificador = " + identificador);
                 aceptado = true;
-                System.out.println("identificador = " + identificador);
+                GUI.logStringBuilder.append("identificador = " + identificador+ "\n");
                 Identificador.cantidadIdentificador++;
                 return;
             }
             Automata.position++;
             q0();
         }
+        GUI.appendLogTextArea();
     }
 }

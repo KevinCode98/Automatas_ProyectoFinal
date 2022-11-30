@@ -8,9 +8,7 @@ public final class OperadorAritmetico extends Automata {
 
     protected void q0() {
         if (Automata.position >= Automata.cadena.length()) return;
-
-        System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q0 -> " + this.getClass().getSimpleName());
+        GUI.logStringBuilder.append("Entro en el estado q0 -> " + this.getClass().getSimpleName()+ "\n");
         if ((Automata.cadena.charAt(position) == '+' || Automata.cadena.charAt(Automata.position) == '-' ||
                 Automata.cadena.charAt(Automata.position) == '*' || Automata.cadena.charAt(Automata.position) == '/' ||
                 Automata.cadena.charAt(Automata.position) == '%') &&
@@ -18,5 +16,6 @@ public final class OperadorAritmetico extends Automata {
             aceptado = true;
             ++OperadorAritmetico.cantidadOperadorAritmetico;
         }
+        GUI.appendLogTextArea();
     }
 }

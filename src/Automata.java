@@ -13,20 +13,19 @@ public abstract class Automata {
 
     protected boolean esAceptado() {
         if (this.aceptado) {
-            System.out.println("Es un " + this.getClass().getSimpleName() + ".");
-//            GUI.textArea.setText(GUI.textArea.getText() + "\n" + GUI.textArea.getText() + "\n" + "Es un " + this.getClass().getSimpleName() + ".");
+            GUI.logStringBuilder.append("Es un " + this.getClass().getSimpleName() + "." + "\n");
             if (Automata.position <= Automata.cadena.length()) {
                 Automata.position++;
                 ControlAutomata.automataEncontrado = true;
                 return this.aceptado;
             }
         } else {
-            System.out.println("No es un " + this.getClass().getSimpleName() + ".");
-//            GUI.textArea.setText(GUI.textArea.getText() + "\n" + GUI.textArea.getText() + "\n" + "No es un " + this.getClass().getSimpleName() + ".");
+            GUI.logStringBuilder.append("No es un " + this.getClass().getSimpleName() + "." + "\n");
             ControlAutomata.automataEncontrado = false;
             Automata.position = Automata.inicioPosition;
             return this.aceptado;
         }
+        GUI.appendLogTextArea();
         return this.aceptado;
     }
 }

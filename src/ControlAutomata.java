@@ -27,9 +27,7 @@ public class ControlAutomata {
 
     private void q1() {
         if (Automata.position + 1 >= Automata.cadena.length()) return;
-
-        System.out.println("cadena.charAt(Automata.position) = " + Automata.cadena.charAt(Automata.position));
-//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "cadena.charAt(Automata.position) = " + Automata.cadena.charAt(Automata.position));
+        GUI.logStringBuilder.append("cadena.charAt(Automata.position) = " + Automata.position + "\n");
         if (new NumeroFlotante().esAceptado()) q0();
         else if (new Identificador().esAceptado()) q0();
         else if (new NumeroEntero().esAceptado()) q0();
@@ -44,5 +42,6 @@ public class ControlAutomata {
             new Error();
             q0();
         }
+        GUI.appendLogTextArea();
     }
 }

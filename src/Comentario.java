@@ -8,28 +8,26 @@ public final class Comentario extends Automata {
 
     protected void q0() {
         if (Automata.position >= Automata.cadena.length()) return;
-
-        System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q0 -> " + this.getClass().getSimpleName());
+        GUI.logStringBuilder.append("Entro en el estado q0 -> " + this.getClass().getSimpleName() + "\n");
         if (Automata.cadena.charAt(Automata.position) == '/') {
             ++Automata.position;
             q1();
         }
+        GUI.appendLogTextArea();
     }
 
     private void q1() {
-        System.out.println("Entro en el estado q1 -> " + this.getClass().getSimpleName());
-//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q1 -> " + this.getClass().getSimpleName());
+        GUI.logStringBuilder.append("Entro en el estado q1 -> " + this.getClass().getSimpleName() + "\n");
         if (Automata.cadena.charAt(Automata.position) == '*') {
             Automata.position++;
             q2();
         }
+        GUI.appendLogTextArea();
     }
 
     private void q2() {
         if (Automata.position >= Automata.cadena.length()) return;
-        System.out.println("Entro en el estado q2 -> " + this.getClass().getSimpleName());
-//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q2 -> " + this.getClass().getSimpleName());
+        GUI.logStringBuilder.append("Entro en el estado q2 -> " + this.getClass().getSimpleName() + "\n");
         if (Automata.cadena.charAt(Automata.position) == '*') {
             Automata.position++;
             q3();
@@ -37,11 +35,11 @@ public final class Comentario extends Automata {
             Automata.position++;
             q2();
         }
+        GUI.appendLogTextArea();
     }
 
     private void q3() {
-        System.out.println("Entro en el estado q3 -> " + this.getClass().getSimpleName());
-//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q3 -> " + this.getClass().getSimpleName());
+        GUI.logStringBuilder.append("Entro en el estado q3 -> " + this.getClass().getSimpleName() + "\n");
         if (cadena.charAt(Automata.position) == '/') {
             q4();
         } else if (cadena.charAt(Automata.position) == '*') {
@@ -51,12 +49,13 @@ public final class Comentario extends Automata {
             Automata.position++;
             q2();
         }
+        GUI.appendLogTextArea();
     }
 
     private void q4() {
-        System.out.println("Entro en el estado q4 -> " + this.getClass().getSimpleName());
+        GUI.logStringBuilder.append("Entro en el estado q4 -> " + this.getClass().getSimpleName() + "\n");
         aceptado = true;
         ++Comentario.cantidadComentario;
-//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q4 -> " + this.getClass().getSimpleName());
+        GUI.appendLogTextArea();
     }
 }

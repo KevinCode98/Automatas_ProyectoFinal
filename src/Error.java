@@ -7,11 +7,11 @@ public class Error {
 
     void q0() {
         if (Automata.position + 1 >= Automata.cadena.length()) return;
-
-        System.out.println("---------------- SOY UN ERROR ------------------");
+        GUI.logStringBuilder.append("Error en la posicion-> " + Automata.position + "\n");
         while (!ControlAutomata.saberSiHayEspacio(Automata.position)) {
             ++Automata.position;
         }
         ++Error.cantindadError;
+        GUI.appendLogTextArea();
     }
 }

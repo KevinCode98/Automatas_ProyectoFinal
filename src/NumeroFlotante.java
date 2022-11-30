@@ -8,9 +8,7 @@ public final class NumeroFlotante extends Automata {
 
     protected void q0() {
         if (Automata.position >= Automata.cadena.length()) return;
-
-        System.out.println("Entro en el estado q0 -> " + this.getClass().getSimpleName());
-//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q0 -> " + this.getClass().getSimpleName());
+        GUI.logStringBuilder.append("Entro en el estado q0 -> " + this.getClass().getSimpleName()+ "\n");
         if ((Automata.cadena.charAt(Automata.position) >= 48 && Automata.cadena.charAt(Automata.position) <= 57) ||
                 (Automata.cadena.charAt(Automata.position) == '-' && Automata.cadena.charAt(position + 1) != ' ')) {
             Automata.position++;
@@ -19,13 +17,12 @@ public final class NumeroFlotante extends Automata {
             Automata.position++;
             q1();
         }
+        GUI.appendLogTextArea();
     }
 
     private void q1() {
         if (Automata.position == Automata.cadena.length()) return;
-
-        System.out.println("Entro en el estado q1 -> " + this.getClass().getSimpleName());
-//        GUI.textArea.setText(GUI.textArea.getText() + "\n" + "Entro en el estado q1 -> " + this.getClass().getSimpleName());
+        GUI.logStringBuilder.append("Entro en el estado q1 -> " + this.getClass().getSimpleName()+ "\n");
         if ((Automata.cadena.charAt(Automata.position) >= 48 && Automata.cadena.charAt(Automata.position) <= 57)) {
             if (ControlAutomata.saberSiHayEspacio(Automata.position + 1)) {
                 aceptado = true;
@@ -35,5 +32,6 @@ public final class NumeroFlotante extends Automata {
             Automata.position++;
             q1();
         }
+        GUI.appendLogTextArea();
     }
 }
